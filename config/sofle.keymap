@@ -45,6 +45,7 @@
                  &kp LGUI &kp LALT &kp LCTRL &mo LOWER  &kp RET    &kp SPACE  &mo RAISE  &kp RCTRL &kp RALT  &kp RGUI
             >;
 
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
             behaviors {
                 rgb_encoder: rgb_encoder {
                     compatible = "zmk,behavior-sensor-rotate";
@@ -52,7 +53,6 @@
                     bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
                 };
             };
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN &rgb_encoder>;
         };
 
         lower_layer {
