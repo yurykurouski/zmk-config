@@ -31,8 +31,6 @@
     keymap {
         compatible = "zmk,keymap";
 
-        
-
         default_layer {
             display-name = "dflt";
 // ------------------------------------------------------------------------------------------------------------
@@ -57,6 +55,7 @@
                     bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
                 };
             };
+            
             combos {
                 compatible = "zmk,combos";
 
