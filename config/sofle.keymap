@@ -59,9 +59,9 @@
             combos {
                 compatible = "zmk,combos";
 
-                combo_esc {
+                combo_ret {
                     timeout-ms = <50>;
-                    key-positions = <21 22>;
+                    key-positions = <25 26>;
                     bindings = <&kp RET>;
                 };
             };
