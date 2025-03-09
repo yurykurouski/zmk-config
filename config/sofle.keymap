@@ -31,6 +31,15 @@
     keymap {
         compatible = "zmk,keymap";
 
+        combos {
+            compatible = "zmk,combos";
+            combo_esc {
+                timeout-ms = <50>;
+                key-positions = <0 1>;
+                bindings = <&kp ESC>;
+            }
+        }
+
         default_layer {
             display-name = "dflt";
 // ------------------------------------------------------------------------------------------------------------
@@ -48,14 +57,6 @@
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp LEFT RIGHT>;
-            combos {
-                compatible = "zmk,combos";
-                combo_esc {
-                    timeout-ms = <50>;
-                    key-positions = <0 1>;
-                    bindings = <&kp ESC>;
-                }
-            }
             behaviors {
                 rgb_encoder: rgb_encoder {
                     compatible = "zmk,behavior-sensor-rotate";
