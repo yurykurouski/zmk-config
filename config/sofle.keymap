@@ -50,6 +50,8 @@
             tap-ms = <0>;
             bindings = <&macro_press &mo LOWER>,
                        <&macro_tap &rgb_ug RGB_ON>,
+                       <&macro_tap &rgb_ug RGB_BRI 20>,  // Set lower brightness
+                       <&macro_tap &rgb_ug RGB_EFF 3>,   // Solid color effect
                        <&macro_pause_for_release>,
                        <&macro_release &mo LOWER>,
                        <&macro_tap &rgb_ug RGB_OFF>;
