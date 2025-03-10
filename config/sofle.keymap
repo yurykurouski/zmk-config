@@ -31,6 +31,19 @@
     };
 
     behaviors {
+        // Add this new behavior
+        lower_rgb: lower_layer_with_rgb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &mo LOWER &rgb_ug RGB_ON>,
+                       <&macro_release &mo LOWER &rgb_ug RGB_OFF>;
+        };
+
+        rgb_encoder: rgb_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+        };
     };
 
     keymap {
@@ -51,7 +64,7 @@
 &kp TAB    &kp Q   &kp W     &kp E     &kp R     &kp T                                   &kp Y      &kp U      &kp I      &kp O     &kp P     &kp BSPC
 &kp LSHFT  &kp A   &kp S     &kp D     &kp F     &kp G                                   &kp H      &kp J      &kp K      &kp L     &kp SEMI  &kp SQT
 &kp LCTRL  &kp Z   &kp X     &kp C     &kp V     &kp B      &kp C_MUTE    &kp LG(LS(A))  &kp N      &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-                   &mkp MB3  &kp LALT  &kp LGUI  &mo LOWER  &kp SPACE     &kp RET        &mo RAISE  &kp RCTRL  &kp RALT   &kp RGUI
+                   &mkp MB3  &kp LALT  &kp LGUI  &lower_rgb &kp SPACE     &kp RET        &mo RAISE  &kp RCTRL  &kp RALT   &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp LEFT RIGHT>;
