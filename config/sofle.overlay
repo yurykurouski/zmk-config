@@ -16,6 +16,7 @@
 };
 
 nice_view_spi: &spi3 {
+    status = "okay";
     compatible = "nordic,nrf-spim";
     pinctrl-0 = <&spi3_default>;
     pinctrl-1 = <&spi3_sleep>;
