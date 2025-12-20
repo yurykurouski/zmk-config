@@ -1,0 +1,6 @@
+if SHIELD_SOFLE_DONGLE
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    def_bool y
+
+endif
