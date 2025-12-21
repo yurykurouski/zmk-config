@@ -31,4 +31,6 @@ include:
     # sofle_right is peripheral by default, but it's good to be explicit
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: sofle_right_peripheral
+  - board: nice_nano
+    shield: settings_reset
 
