@@ -1,5 +1,4 @@
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <dt-bindings/i2c/i2c.h>
 
 / {
     chosen {
@@ -33,39 +32,20 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,5) RC(4,6) RC(3,6) RC(3,7) 
 
 &pro_micro_i2c {
     status = "okay";
-    clock-frequency = <I2C_BITRATE_STANDARD>;
 
-    // Alternative OLED address (try 0x3d)
-    oled: ssd1306@3d {
+    oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
-        reg = <0x3d>;
+        reg = <0x3c>;
         width = <128>;
-        height = <32>;
+        height = <64>; // Standard Sofle OLED height
         segment-offset = <0>;
         page-offset = <0>;
         display-offset = <0>;
-        multiplex-ratio = <31>;
+        multiplex-ratio = <63>; // 63 for 128x64, 31 for 128x32
+
         segment-remap;
         com-invdir;
         com-sequential;
         prechargep = <0x22>;
     };
-
-    // Standard OLED address (0x3c)
-    // oled_std: ssd1306@3c {
-    //     compatible = "solomon,ssd1306fb";
-    //     reg = <0x3c>;
-    //     width = <128>;
-    //     height = <32>;
-    //     segment-offset = <0>;
-    //     page-offset = <0>;
-    //     display-offset = <0>;
-    //     multiplex-ratio = <31>;
-    //     segment-remap;
-    //     com-invdir;
-    //     com-sequential;
-    //     prechargep = <0x22>;
-    // };
 };
-
-
