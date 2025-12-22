@@ -20,7 +20,7 @@
 ---
 include:
   - board: nice_nano
-    shield: sofle_dongle dongle_display
+    shield: sofle_dongle
     snippet: zmk-usb-logging
     artifact-name: sofle_dongle
 
