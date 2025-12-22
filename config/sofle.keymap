@@ -65,7 +65,7 @@
                     &trans    &trans      &trans    &trans     &kp C_PP &trans  &trans    &trans   &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP &inc_dec_kp UP DOWN>;
+            sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP &inc_dec_kp DOWN UP>;
         };
 
 
