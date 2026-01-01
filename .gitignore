@@ -1,2 +1,6 @@
 
 .zmk/
+.west/
+zephyr/**
+build/**
+artifacts/**
