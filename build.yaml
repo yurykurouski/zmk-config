@@ -25,13 +25,13 @@ include:
     artifact-name: sofle_dongle
 
   # disabled to improve build speed 
-  # - board: nice_nano
-  #   shield: sofle_left
-  #   cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-  #   artifact-name: sofle_left_peripheral
-  # - board: nice_nano
-  #   shield: sofle_right
-  #   cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+  - board: nice_nano
+    shield: sofle_left
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    artifact-name: sofle_left_peripheral
+  - board: nice_nano
+    shield: sofle_right
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
 
     artifact-name: sofle_right_peripheral
   - board: nice_nano
