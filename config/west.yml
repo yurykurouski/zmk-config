@@ -12,8 +12,5 @@ manifest:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
-    - name: zmk-dongle-display
-      remote: englmaxi
-      revision: main
   self:
     path: config

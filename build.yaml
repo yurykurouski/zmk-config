@@ -37,6 +37,3 @@ include:
   - board: nice_nano
     shield: settings_reset
 
-include:
-  - board: xiao_ble
-    shield: sweep_dongle dongle_display
