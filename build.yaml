@@ -25,12 +25,12 @@ include:
 
   # disabled to improve build speed 
   - board: nice_nano//zmk
-    shield: sofle_left
+    shield: sofle_left nice_view_adapter nice_view
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: sofle_left_peripheral
 
   - board: nice_nano//zmk
-    shield: sofle_right
+    shield: sofle_right nice_view_adapter nice_view
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: sofle_right_peripheral
 
