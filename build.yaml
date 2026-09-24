@@ -23,14 +23,14 @@ include:
     shield: sofle_dongle dongle_display
     artifact-name: sofle_dongle
 
-  # disabled to improve build speed 
+  # Split peripheral halves (no display)
   - board: nice_nano//zmk
-    shield: sofle_left nice_view_adapter nice_view
+    shield: sofle_left
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: sofle_left_peripheral
 
   - board: nice_nano//zmk
-    shield: sofle_right nice_view_adapter nice_view
+    shield: sofle_right
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: sofle_right_peripheral
 
