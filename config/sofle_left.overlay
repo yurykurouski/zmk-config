@@ -1,0 +1,11 @@
+/*
+ * Hold nice!nano v2 VCC rail (P0.13) off. The halves have no OLED/RGB,
+ * but the installed LEDs draw quiescent current whenever VCC is on.
+ */
+&gpio0 {
+    vcc_off {
+        gpio-hog;
+        gpios = <13 GPIO_ACTIVE_HIGH>;
+        output-low;
+    };
+};
