@@ -34,10 +34,10 @@
             layers = <BASE LOWER RAISE ADJUST>;
             bindings = <&kp RET>;
         };
-        // Toggle GAME: press BKSPC (top-right) + MUTE (left encoder) + S_G_A (right inner) together
+        // Toggle GAME: press left + right encoder knobs together
         combo_game_toggle {
             timeout-ms = <100>;
-            key-positions = <11 42 43>;
+            key-positions = <42 43>;
             layers = <BASE GAME>;
             bindings = <&tog GAME>;
         };
