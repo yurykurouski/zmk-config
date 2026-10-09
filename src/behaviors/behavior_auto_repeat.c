@@ -87,8 +87,11 @@ static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
     stop_repeat();
     active = true;
     active_key = key;
-    key_down = false;
-    k_work_reschedule(&repeat_work, random_delay());
+
+    // First tap right away: confirms arming and releases the sticky AUTO layer immediately.
+    key_down = true;
+    raise_zmk_keycode_state_changed_from_encoded(active_key, true, event.timestamp);
+    k_work_reschedule(&repeat_work, K_MSEC(HOLD_MS));
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
