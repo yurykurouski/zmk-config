@@ -29,7 +29,7 @@
             #binding-cells = <1>;
             min-delay-ms = <200>;
             max-delay-ms = <1000>;
-            hold-ms = <600000>; // 10 min
+            hold-ms = <100>;
             game-layer = <GAME>;
         };
 
