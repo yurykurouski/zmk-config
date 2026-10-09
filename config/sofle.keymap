@@ -17,8 +17,31 @@
 #define RAISE 3
 #define ADJUST 4
 #define GAME_MOD 5
+#define GAME_RAISE 6 // GAME + RAISE: knob arms auto-repeat
+#define AUTO 7 // sticky: next key toggles auto-repeat
 
 / {
+
+    behaviors {
+        // &ar KEY: toggle auto-repeat of KEY with a random 200-1000 ms pause between taps
+        ar: auto_repeat {
+            compatible = "zmk,behavior-auto-repeat";
+            #binding-cells = <1>;
+            min-delay-ms = <200>;
+            max-delay-ms = <1000>;
+            hold-ms = <600000>; // 10 min
+            game-layer = <GAME>;
+        };
+
+        // Sticky AUTO layer, 3 s to press the key to (un)repeat
+        sl_auto: sticky_layer_auto {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&mo>;
+            release-after-ms = <3000>;
+            quick-release;
+        };
+    };
 
     combos {
         compatible = "zmk,combos";
@@ -49,6 +72,11 @@
         adjust_layer {
             if-layers = <LOWER RAISE>;
             then-layer = <ADJUST>;
+        };
+        // Holding RAISE in GAME: right knob arms auto-repeat
+        game_raise_layer {
+            if-layers = <GAME RAISE>;
+            then-layer = <GAME_RAISE>;
         };
     };
 
@@ -166,6 +194,30 @@
 &trans &kp KP_DOT &kp KP_N4 &kp KP_N5    &kp KP_N6       &kp KP_PLUS                  &trans &trans &trans &trans &trans &trans
 &trans &kp KP_N0 &kp KP_N1  &kp KP_N2    &kp KP_N3       &kp KP_ENTER  &trans  &trans &trans &trans &trans &trans &trans &trans
                  &trans     &trans       &trans          &trans        &trans  &trans &trans &trans &trans &trans
+            >;
+        };
+
+        game_raise_layer {
+            display-name = "gameraise";
+// Only the right knob does something: tap it, then tap a key to start/stop repeating it
+            bindings = <
+&trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &sl_auto AUTO &trans &trans &trans &trans &trans &trans
+       &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+            >;
+        };
+
+        auto_layer {
+            display-name = "auto";
+// Mirrors GAME; every plain key toggles its own auto-repeat, modifiers/layer keys do nothing
+            bindings = <
+&ar ESC  &ar N1 &ar N2 &ar N3 &ar N4 &ar N5                  &ar N6 &ar N7 &ar N8    &ar N9  &ar N0   &ar BSPC
+&ar TAB  &ar Q  &ar W  &ar E  &ar R  &ar T                   &ar Y  &ar U  &ar I     &ar O   &ar P    &ar GRAVE
+&none    &ar A  &ar S  &ar D  &ar F  &ar G                   &ar H  &ar J  &ar K     &ar L   &ar SEMI &ar SQT
+&none    &ar Z  &ar X  &ar C  &ar V  &ar B  &none  &none     &ar N  &ar M  &ar COMMA &ar DOT &ar FSLH &none
+         &none  &none  &none  &none  &ar SPACE               &ar RET &none &none     &none   &none
             >;
         };
 

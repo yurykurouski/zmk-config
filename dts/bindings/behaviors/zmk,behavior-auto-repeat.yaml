@@ -1,0 +1,20 @@
+description: Toggle auto-repeat of a key with a random delay between taps
+
+compatible: "zmk,behavior-auto-repeat"
+
+include: one_param.yaml
+
+properties:
+  min-delay-ms:
+    type: int
+    required: true
+  max-delay-ms:
+    type: int
+    required: true
+  hold-ms:
+    type: int
+    default: 30
+  game-layer:
+    type: int
+    required: true
+    description: Layer index; repeating stops when this layer is no longer active
