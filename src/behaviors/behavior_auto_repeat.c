@@ -4,7 +4,7 @@
  * &ar KEY: toggles auto-repeat of KEY. While active, KEY is tapped over and over with a random
  * pause (min-delay-ms..max-delay-ms) between taps. Only one key repeats at a time: arming another
  * key replaces the current one, pressing the same key again stops it. Repeating also stops when
- * the configured game layer is deactivated.
+ * the configured game layer is deactivated or any other key is pressed.
  */
 
 #define DT_DRV_COMPAT zmk_behavior_auto_repeat
@@ -106,6 +106,25 @@ static int auto_repeat_layer_listener(const zmk_event_t *eh) {
 
 ZMK_LISTENER(auto_repeat, auto_repeat_layer_listener);
 ZMK_SUBSCRIPTION(auto_repeat, zmk_layer_state_changed);
+
+// Any key press other than the repeated key (our own taps included) cancels the cycle.
+static int auto_repeat_key_listener(const zmk_event_t *eh) {
+    const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
+
+    if (!active || ev == NULL || !ev->state) {
+        return ZMK_EV_EVENT_BUBBLE;
+    }
+
+    struct zmk_keycode_state_changed ours =
+        zmk_keycode_state_changed_from_encoded(active_key, true, 0);
+    if (ev->usage_page != ours.usage_page || ev->keycode != ours.keycode) {
+        stop_repeat();
+    }
+    return ZMK_EV_EVENT_BUBBLE;
+}
+
+ZMK_LISTENER(auto_repeat_key, auto_repeat_key_listener);
+ZMK_SUBSCRIPTION(auto_repeat_key, zmk_keycode_state_changed);
 
 static int behavior_auto_repeat_init(const struct device *dev) {
     k_work_init_delayable(&repeat_work, repeat_handler);
